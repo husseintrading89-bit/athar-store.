@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أثر | ATHAR — ملابس وإكسسوارات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   ATHAR / أثر — design tokens
+   ============================================ */
+:root {
+  --bg: #EDE6DA;
+  --bg-raised: #F5F1E8;
+  --ink: #2B2420;
+  --ink-soft: #6b6156;
+  --line: #d8cebb;
+  --indigo: #2F3E52;
+  --indigo-soft: #5B6B80;
+  --clay: #B6694A;
+  --olive: #6B7A4C;
+  --white: #FFFDF9;
+
+  --font: 'Tajawal', 'Inter', system-ui, sans-serif;
+  --radius: 2px;
+  --gap: 24px;
+  --maxw: 1240px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+button, input, select { font-family: var(--font); font-size: 1rem; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ============================================
+   Header
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.logo .dot { color: var(--clay); }
+
+.main-nav {
+  display: flex;
+  gap: 28px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.main-nav a { padding-bottom: 4px; border-bottom: 1px solid transparent; }
+.main-nav a:hover, .main-nav a.active { border-color: var(--ink); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.lang-btn:hover { background: var(--ink); color: var(--white); }
+
+.cart-btn {
+  position: relative;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.cart-count {
+  position: absolute;
+  top: -8px;
+  inset-inline-end: -8px;
+  background: var(--clay);
+  color: var(--white);
+  font-size: 0.7rem;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+@media (max-width: 780px) {
+  .main-nav { display: none; }
+  .nav-toggle { display: block; }
+  .main-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    background: var(--bg);
+    padding: 16px 24px 24px;
+    border-bottom: 1px solid var(--line);
+    gap: 16px;
+  }
+}
+
+/* ============================================
+   Hero (editorial, asymmetric)
+   ============================================ */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: stretch;
+  border-bottom: 1px solid var(--line);
+}
+.hero-copy {
+  padding: 80px 48px 80px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+[dir="rtl"] .hero-copy { padding: 80px 24px 80px 48px; }
+
+.hero-kicker {
+  color: var(--clay);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+}
+.hero-title {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  margin: 0 0 24px;
+  max-width: 14ch;
+}
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 0 0 32px;
+}
+.hero-media {
+  background: var(--indigo);
+  overflow: hidden;
+  min-height: 420px;
+}
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-copy { padding: 48px 24px !important; order: 2; }
+  .hero-media { order: 1; min-height: 320px; }
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--white);
+  width: fit-content;
+}
+.btn:hover { background: transparent; color: var(--ink); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+}
+.btn-outline:hover { background: var(--ink); color: var(--white); }
+
+.btn-block { width: 100%; justify-content: center; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn:disabled:hover { background: var(--ink); color: var(--white); }
+
+/* ============================================
+   Section headings
+   ============================================ */
+.section { padding: 72px 0; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section-title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin: 0;
+}
+.section-link { font-weight: 600; border-bottom: 1px solid var(--ink); }
+
+/* ============================================
+   Category strip
+   ============================================ */
+.cat-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+}
+.cat-card {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--indigo-soft);
+}
+.cat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.cat-card:hover img { transform: scale(1.04); }
+.cat-label {
+  position: absolute;
+  bottom: 0; inset-inline: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0,0,0,.55));
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 640px) { .cat-strip { grid-template-columns: 1fr; } }
+
+/* ============================================
+   Product grid & cards
+   ============================================ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap) 20px;
+}
+@media (max-width: 980px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 14px; } }
+
+.product-card { display: block; }
+.product-media {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: var(--bg-raised);
+  margin-bottom: 12px;
+}
+.product-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.product-card:hover .product-media img { transform: scale(1.03); }
+
+.product-tag {
+  position: absolute;
+  top: 10px;
+  inset-inline-start: 10px;
+  background: var(--clay);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: var(--radius);
+}
+.product-name { font-weight: 700; font-size: 0.98rem; margin: 0 0 4px; }
+.product-price { color: var(--ink-soft); font-size: 0.92rem; }
+.price-compare { text-decoration: line-through; opacity: 0.6; margin-inline-end: 8px; }
+.price-now { color: var(--clay); font-weight: 700; }
+
+/* Filters */
+.filter-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.filter-chip {
+  padding: 8px 16px;
+  border: 1px solid var(--ink);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+}
+.filter-chip.active { background: var(--ink); color: var(--white); }
+
+/* ============================================
+   Product detail
+   ============================================ */
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  padding: 56px 0 80px;
+}
+@media (max-width: 860px) { .product-detail { grid-template-columns: 1fr; gap: 28px; } }
+
+.pd-media { background: var(--bg-raised); aspect-ratio: 4/5; overflow: hidden; }
+.pd-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.pd-info .breadcrumb {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.pd-info h1 { font-size: 2rem; margin: 0 0 10px; font-weight: 800; }
+.pd-price { font-size: 1.3rem; font-weight: 700; margin-bottom: 22px; }
+.pd-desc { color: var(--ink-soft); margin-bottom: 28px; max-width: 48ch; }
+
+.option-group { margin-bottom: 24px; }
+.option-label { font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+
+.swatches { display: flex; gap: 10px; }
+.swatch {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+}
+.swatch.selected { border-color: var(--ink); }
+.swatch.selected::after {
+  content: '';
+  position: absolute; inset: -6px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+}
+
+.size-options { display: flex; gap: 8px; flex-wrap: wrap; }
+.size-btn {
+  padding: 9px 15px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: var(--radius);
+}
+.size-btn.selected { border-color: var(--ink); background: var(--ink); color: var(--white); }
+
+.qty-row { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.qty-control {
+  display: flex; align-items: center; border: 1px solid var(--line);
+}
+.qty-control button { background: none; border: none; width: 38px; height: 38px; cursor: pointer; font-size: 1.1rem; }
+.qty-control span { width: 34px; text-align: center; font-weight: 700; }
+
+.pd-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.pd-meta { margin-top: 28px; font-size: 0.85rem; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 18px; }
+.pd-meta p { margin: 4px 0; }
+
+/* ============================================
+   Cart page
+   ============================================ */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  padding: 56px 0 80px;
+  align-items: start;
+}
+@media (max-width: 860px) { .cart-layout { grid-template-columns: 1fr; } }
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.cart-item img { aspect-ratio: 4/5; object-fit: cover; }
+.cart-item-name { font-weight: 700; margin: 0 0 4px; }
+.cart-item-meta { font-size: 0.85rem; color: var(--ink-soft); margin: 0 0 10px; }
+.cart-item-remove { font-size: 0.8rem; color: var(--clay); cursor: pointer; border: none; background: none; padding: 0; font-weight: 600; }
+.cart-item-price { font-weight: 700; text-align: end; white-space: nowrap; }
+
+.summary-box {
+  background: var(--bg-raised);
+  padding: 28px;
+  border: 1px solid var(--line);
+}
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
+.summary-row.total { font-weight: 800; font-size: 1.15rem; border-top: 1px solid var(--line); padding-top: 14px; margin-top: 14px; }
+
+.empty-state { text-align: center; padding: 90px 24px; color: var(--ink-soft); }
+.empty-state h2 { color: var(--ink); margin-bottom: 10px; }
+
+/* ============================================
+   Checkout
+   ============================================ */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  padding: 56px 0 80px;
+  align-items: start;
+}
+@media (max-width: 860px) { .checkout-layout { grid-template-columns: 1fr; } }
+
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 6px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: var(--radius);
+  color: var(--ink);
+}
+textarea { resize: vertical; min-height: 80px; }
+
+.pay-note {
+  background: var(--bg-raised);
+  border: 1px dashed var(--indigo-soft);
+  padding: 16px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  border-radius: var(--radius);
+}
+
+.order-success {
+  text-align: center;
+  padding: 90px 24px;
+}
+.order-success h2 { font-size: 1.8rem; margin-bottom: 12px; }
+.order-success .num { color: var(--clay); font-weight: 800; }
+
+/* ============================================
+   Footer
+   ============================================ */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 48px 0 32px;
+  margin-top: 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+@media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-grid h4 { font-size: 0.9rem; margin: 0 0 14px; }
+.footer-grid ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: var(--ink-soft); }
+.footer-bottom { font-size: 0.8rem; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 20px; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--white);
+  padding: 13px 22px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+[dir="rtl"] .toast { transform: translateX(50%); }
+.toast.show { opacity: 1; }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="index.html" class="logo">أثر<span class="dot">.</span></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" class="active" data-i18n="nav_home">الرئيسية</a>
+      <a href="shop.html" data-i18n="nav_shop">المتجر</a>
+      <a href="shop.html?cat=clothing" data-i18n="nav_clothing">ملابس</a>
+      <a href="shop.html?cat=accessories" data-i18n="nav_accessories">إكسسوارات</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-btn" id="langBtn">EN</button>
+      <a href="cart.html" class="cart-btn">
+        <span data-i18n="nav_cart">السلة</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-kicker" data-i18n="hero_kicker">تشكيلة الموسم</div>
+    <h1 class="hero-title" data-i18n="hero_title">قطع بسيطة تدوم، مش موضة بتعدي</h1>
+    <p class="hero-desc" data-i18n="hero_desc">أثر متجر ملابس وإكسسوارات بيركّز على الخامة والقصة الصح، بعيد عن الكتالوج المتكرر.</p>
+    <a href="shop.html" class="btn" data-i18n="hero_cta">تسوّق الآن</a>
+  </div>
+  <div class="hero-media">
+    <img src="https://picsum.photos/seed/athar-hero/900/1100" alt="Athar">
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="cat-strip">
+    <a class="cat-card" href="shop.html?cat=clothing">
+      <img src="https://picsum.photos/seed/athar-cat-clothing/700/520" alt="">
+      <div class="cat-label" data-i18n="cat_clothing">ملابس</div>
+    </a>
+    <a class="cat-card" href="shop.html?cat=accessories">
+      <img src="https://picsum.photos/seed/athar-cat-accessories/700/520" alt="">
+      <div class="cat-label" data-i18n="cat_accessories">إكسسوارات</div>
+    </a>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section-head">
+    <h2 class="section-title" data-i18n="featured_title">الأكثر طلبًا</h2>
+    <a href="shop.html" class="section-link" data-i18n="featured_link">عرض الكل</a>
+  </div>
+  <div class="product-grid" id="featuredGrid"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>أثر</h4>
+        <p data-i18n="footer_about">أثر متجر ملابس وإكسسوارات يهتم بالخامة الجيدة والتصميم البسيط.</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer_shop">المتجر</h4>
+        <ul>
+          <li><a href="shop.html?cat=clothing" data-i18n="nav_clothing">ملابس</a></li>
+          <li><a href="shop.html?cat=accessories" data-i18n="nav_accessories">إكسسوارات</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer_help">مساعدة</h4>
+        <ul>
+          <li data-i18n="footer_shipping">الشحن والتوصيل</li>
+          <li data-i18n="footer_returns">الاستبدال والاسترجاع</li>
+          <li data-i18n="footer_contact">تواصل معنا</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Athar — <span data-i18n="footer_rights">جميع الحقوق محفوظة</span></div>
+  </div>
+</footer>
+
+<script>
+const PRODUCTS = [
+  {
+    "id": "p01",
+    "category": "clothing",
+    "name": {
+      "ar": "قميص كتان فضفاض",
+      "en": "Loose Linen Shirt"
+    },
+    "desc": {
+      "ar": "قميص كتان مصري خفيف، قصة مريحة تناسب الجو الحار.",
+      "en": "Lightweight Egyptian linen shirt with a relaxed cut, built for warm weather."
+    },
+    "price": 850,
+    "compareAt": null,
+    "colors": [
+      "#E9E1D3",
+      "#3A3A38",
+      "#7C6A54"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "https://picsum.photos/seed/athar-shirt/800/1000",
+    "tag": {
+      "ar": "جديد",
+      "en": "New"
+    }
+  },
+  {
+    "id": "p02",
+    "category": "clothing",
+    "name": {
+      "ar": "جاكيت دنيم كلاسيك",
+      "en": "Classic Denim Jacket"
+    },
+    "desc": {
+      "ar": "جاكيت دنيم متوسط الوزن بقصة كلاسيكية تدوم لسنين.",
+      "en": "Mid-weight denim jacket with a timeless silhouette."
+    },
+    "price": 1450,
+    "compareAt": 1750,
+    "colors": [
+      "#2F3E52",
+      "#5B6B80"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "https://picsum.photos/seed/athar-jacket/800/1000",
+    "tag": {
+      "ar": "خصم",
+      "en": "Sale"
+    }
+  },
+  {
+    "id": "p03",
+    "category": "clothing",
+    "name": {
+      "ar": "فستان ميدي صيفي",
+      "en": "Summer Midi Dress"
+    },
+    "desc": {
+      "ar": "فستان قطن بطبعة هادئة، مناسب للنهار والمشاوير.",
+      "en": "Cotton midi dress with a quiet print, easy for daytime wear."
+    },
+    "price": 1120,
+    "compareAt": null,
+    "colors": [
+      "#B6694A",
+      "#EDE6DA"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "https://picsum.photos/seed/athar-dress/800/1000",
+    "tag": null
+  },
+  {
+    "id": "p04",
+    "category": "clothing",
+    "name": {
+      "ar": "بنطلون قماش واسع",
+      "en": "Wide-Leg Trousers"
+    },
+    "desc": {
+      "ar": "بنطلون قماش بقصة واسعة مريحة ونسيج يسقط بشكل أنيق.",
+      "en": "Wide-leg trousers in a fluid fabric that drapes cleanly."
+    },
+    "price": 990,
+    "compareAt": null,
+    "colors": [
+      "#2B2420",
+      "#7C6A54"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "https://picsum.photos/seed/athar-trousers/800/1000",
+    "tag": null
+  },
+  {
+    "id": "p05",
+    "category": "accessories",
+    "name": {
+      "ar": "حزام جلد طبيعي",
+      "en": "Natural Leather Belt"
+    },
+    "desc": {
+      "ar": "حزام جلد طبيعي بإبزيم معدني بسيط، يتحسن مظهره مع الوقت.",
+      "en": "Full-grain leather belt with a minimal metal buckle, ages beautifully."
+    },
+    "price": 480,
+    "compareAt": null,
+    "colors": [
+      "#4A3324",
+      "#2B2420"
+    ],
+    "sizes": [
+      "S/M",
+      "L/XL"
+    ],
+    "image": "https://picsum.photos/seed/athar-belt/800/1000",
+    "tag": null
+  },
+  {
+    "id": "p06",
+    "category": "accessories",
+    "name": {
+      "ar": "شنطة يد كانفاس",
+      "en": "Canvas Tote Bag"
+    },
+    "desc": {
+      "ar": "شنطة كانفاس متينة بحزام جلد، تتسع للشغل والمشاوير.",
+      "en": "Durable canvas tote with a leather strap, roomy enough for work or errands."
+    },
+    "price": 620,
+    "compareAt": 720,
+    "colors": [
+      "#EDE6DA",
+      "#6B7A4C"
+    ],
+    "sizes": [
+      "مقاس واحد"
+    ],
+    "image": "https://picsum.photos/seed/athar-tote/800/1000",
+    "tag": {
+      "ar": "خصم",
+      "en": "Sale"
+    }
+  },
+  {
+    "id": "p07",
+    "category": "accessories",
+    "name": {
+      "ar": "وشاح صوف ميرينو",
+      "en": "Merino Wool Scarf"
+    },
+    "desc": {
+      "ar": "وشاح صوف ميرينو ناعم ودافئ، بألوان هادئة تناسب أي إطلالة.",
+      "en": "Soft, warm merino wool scarf in quiet tones that pair with anything."
+    },
+    "price": 540,
+    "compareAt": null,
+    "colors": [
+      "#2F3E52",
+      "#B6694A",
+      "#2B2420"
+    ],
+    "sizes": [
+      "مقاس واحد"
+    ],
+    "image": "https://picsum.photos/seed/athar-scarf/800/1000",
+    "tag": {
+      "ar": "جديد",
+      "en": "New"
+    }
+  },
+  {
+    "id": "p08",
+    "category": "accessories",
+    "name": {
+      "ar": "نظارة شمس كلاسيك",
+      "en": "Classic Sunglasses"
+    },
+    "desc": {
+      "ar": "نظارة شمس بإطار قرن السلحفاة وعدسات مضادة للانعكاس.",
+      "en": "Tortoiseshell-frame sunglasses with anti-glare lenses."
+    },
+    "price": 690,
+    "compareAt": null,
+    "colors": [
+      "#4A3324"
+    ],
+    "sizes": [
+      "مقاس واحد"
+    ],
+    "image": "https://picsum.photos/seed/athar-sunglasses/800/1000",
+    "tag": null
+  },
+  {
+    "id": "p09",
+    "category": "clothing",
+    "name": {
+      "ar": "سترة صوف محبوكة",
+      "en": "Knit Wool Sweater"
+    },
+    "desc": {
+      "ar": "سترة صوف محبوكة بنسيج كثيف يدفي في الشتاء.",
+      "en": "Densely knit wool sweater built for cold weather."
+    },
+    "price": 1080,
+    "compareAt": null,
+    "colors": [
+      "#7C6A54",
+      "#2B2420",
+      "#EDE6DA"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "https://picsum.photos/seed/athar-sweater/800/1000",
+    "tag": null
+  }
+];
+
+</script>
+<script>
+/* ============================================
+   ATHAR store — shared logic
+   Language, cart, and rendering helpers used
+   across every page.
+   ============================================ */
+
+/* ---------- store settings ---------- */
+const STORE_WHATSAPP = "201091313819"; // store WhatsApp number, international format, no + or leading 0
+
+/* ---------- i18n ---------- */
+const I18N = {
+  ar: {
+    dir: "rtl",
+    nav_home: "الرئيسية",
+    nav_shop: "المتجر",
+    nav_clothing: "ملابس",
+    nav_accessories: "إكسسوارات",
+    nav_cart: "السلة",
+    lang_switch: "EN",
+    hero_kicker: "تشكيلة الموسم",
+    hero_title: "قطع بسيطة تدوم، مش موضة بتعدي",
+    hero_desc: "أثر متجر ملابس وإكسسوارات بيركّز على الخامة والقصة الصح، بعيد عن الكتالوج المتكرر.",
+    hero_cta: "تسوّق الآن",
+    cat_clothing: "ملابس",
+    cat_accessories: "إكسسوارات",
+    featured_title: "الأكثر طلبًا",
+    featured_link: "عرض الكل",
+    all_products: "كل المنتجات",
+    filter_all: "الكل",
+    filter_clothing: "ملابس",
+    filter_accessories: "إكسسوارات",
+    add_to_cart: "أضف إلى السلة",
+    added_to_cart: "اتضافت للسلة",
+    select_size: "اختار المقاس",
+    select_color: "اللون",
+    size_label: "المقاس",
+    color_label: "اللون",
+    qty_label: "الكمية",
+    breadcrumb_shop: "المتجر",
+    care_title: "معلومات المنتج",
+    care_1: "شحن خلال 2-4 أيام عمل داخل المحافظات.",
+    care_2: "إمكانية الاستبدال خلال 14 يوم من الاستلام.",
+    care_3: "الدفع عند الاستلام أو تحويل بنكي.",
+    cart_title: "سلة المشتريات",
+    cart_empty_title: "السلة فاضية",
+    cart_empty_desc: "لسه ما ضفتش أي منتج للسلة.",
+    cart_empty_cta: "ابدأ التسوق",
+    remove: "إزالة",
+    subtotal: "المجموع الفرعي",
+    shipping: "الشحن",
+    shipping_free: "مجاني",
+    total: "الإجمالي",
+    checkout_cta: "إتمام الطلب",
+    continue_shopping: "متابعة التسوق",
+    checkout_title: "بيانات الطلب",
+    full_name: "الاسم بالكامل",
+    phone: "رقم الموبايل",
+    email: "البريد الإلكتروني",
+    address: "العنوان بالتفصيل",
+    city: "المحافظة",
+    notes: "ملاحظات (اختياري)",
+    payment_title: "طريقة الدفع",
+    pay_cod: "الدفع عند الاستلام",
+    pay_transfer: "تحويل بنكي / فودافون كاش",
+    pay_note: "بوابات الدفع الإلكتروني (فيزا / فوري) هتتفعّل بعد ربط حساب تاجر خاص بالمتجر. دلوقتي الطلبات بتتقفل عن طريق الدفع عند الاستلام أو التحويل.",
+    place_order: "تأكيد الطلب",
+    order_summary: "ملخص الطلب",
+    order_success_title: "خطوة واحدة باقية!",
+    order_success_desc: "دوس الزرار تحت عشان تبعت تفاصيل طلبك لينا على واتساب، وهنتواصل معاك لتأكيد الطلب.",
+    order_success_num: "رقم الطلب",
+    whatsapp_cta: "إرسال الطلب عبر واتساب",
+    back_home: "العودة للرئيسية",
+    footer_shop: "المتجر",
+    footer_help: "مساعدة",
+    footer_shipping: "الشحن والتوصيل",
+    footer_returns: "الاستبدال والاسترجاع",
+    footer_contact: "تواصل معنا",
+    footer_about: "عن أثر، متجر ملابس وإكسسوارات يهتم بالخامة الجيدة والتصميم البسيط.",
+    footer_rights: "جميع الحقوق محفوظة",
+    required_field: "الحقل ده مطلوب",
+  },
+  en: {
+    dir: "ltr",
+    nav_home: "Home",
+    nav_shop: "Shop",
+    nav_clothing: "Clothing",
+    nav_accessories: "Accessories",
+    nav_cart: "Cart",
+    lang_switch: "AR",
+    hero_kicker: "This season's edit",
+    hero_title: "Simple pieces built to last, not to date",
+    hero_desc: "Athar is a clothing and accessories store focused on real material and honest cut, not another repeating catalog.",
+    hero_cta: "Shop now",
+    cat_clothing: "Clothing",
+    cat_accessories: "Accessories",
+    featured_title: "Most wanted",
+    featured_link: "View all",
+    all_products: "All products",
+    filter_all: "All",
+    filter_clothing: "Clothing",
+    filter_accessories: "Accessories",
+    add_to_cart: "Add to cart",
+    added_to_cart: "Added to cart",
+    select_size: "Select a size",
+    select_color: "Color",
+    size_label: "Size",
+    color_label: "Color",
+    qty_label: "Quantity",
+    breadcrumb_shop: "Shop",
+    care_title: "Product info",
+    care_1: "Delivery within 2-4 business days nationwide.",
+    care_2: "Exchanges accepted within 14 days of delivery.",
+    care_3: "Cash on delivery or bank transfer available.",
+    cart_title: "Shopping cart",
+    cart_empty_title: "Your cart is empty",
+    cart_empty_desc: "You haven't added anything yet.",
+    cart_empty_cta: "Start shopping",
+    remove: "Remove",
+    subtotal: "Subtotal",
+    shipping: "Shipping",
+    shipping_free: "Free",
+    total: "Total",
+    checkout_cta: "Checkout",
+    continue_shopping: "Continue shopping",
+    checkout_title: "Order details",
+    full_name: "Full name",
+    phone: "Phone number",
+    email: "Email",
+    address: "Full address",
+    city: "City",
+    notes: "Notes (optional)",
+    payment_title: "Payment method",
+    pay_cod: "Cash on delivery",
+    pay_transfer: "Bank transfer / mobile wallet",
+    pay_note: "Card payment (Visa / Fawry) will go live once a merchant account is connected to the store. Orders are currently placed via cash on delivery or bank transfer.",
+    place_order: "Place order",
+    order_summary: "Order summary",
+    order_success_title: "One last step!",
+    order_success_desc: "Tap the button below to send your order details to us on WhatsApp, and we'll reach out to confirm it.",
+    order_success_num: "Order number",
+    whatsapp_cta: "Send order via WhatsApp",
+    back_home: "Back to home",
+    footer_shop: "Shop",
+    footer_help: "Help",
+    footer_shipping: "Shipping & delivery",
+    footer_returns: "Exchanges & returns",
+    footer_contact: "Contact us",
+    footer_about: "Athar is a clothing and accessories store built around good material and simple design.",
+    footer_rights: "All rights reserved",
+    required_field: "This field is required",
+  },
+};
+
+function getLang() {
+  return localStorage.getItem("athar_lang") || "ar";
+}
+
+function setLang(lang) {
+  localStorage.setItem("athar_lang", lang);
+  applyLang();
+}
+
+function t(key) {
+  const lang = getLang();
+  return (I18N[lang] && I18N[lang][key]) || key;
+}
+
+function pName(p) { return p.name[getLang()]; }
+function pDesc(p) { return p.desc[getLang()]; }
+
+function applyLang() {
+  const lang = getLang();
+  const dict = I18N[lang];
+  document.documentElement.lang = lang === "ar" ? "ar" : "en";
+  document.documentElement.dir = dict.dir;
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) el.textContent = dict[key];
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (dict[key]) el.setAttribute("placeholder", dict[key]);
+  });
+
+  const langBtn = document.getElementById("langBtn");
+  if (langBtn) langBtn.textContent = dict.lang_switch;
+
+  // Re-render any dynamic page content that depends on language
+  if (typeof onLangChange === "function") onLangChange();
+}
+
+/* ---------- money ---------- */
+function money(n) {
+  const lang = getLang();
+  const formatted = n.toLocaleString(lang === "ar" ? "ar-EG" : "en-US");
+  return lang === "ar" ? `${formatted} ج.م` : `EGP ${formatted}`;
+}
+
+/* ---------- cart (localStorage) ----------
+   cart item shape: { id, size, color, qty }
+------------------------------------------- */
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem("athar_cart")) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem("athar_cart", JSON.stringify(cart));
+  updateCartCount();
+}
+
+function findProduct(id) {
+  return PRODUCTS.find((p) => p.id === id);
+}
+
+function addToCart(id, size, color, qty) {
+  const cart = getCart();
+  const existing = cart.find((i) => i.id === id && i.size === size && i.color === color);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ id, size, color, qty });
+  }
+  saveCart(cart);
+  showToast(t("added_to_cart"));
+}
+
+function removeFromCart(index) {
+  const cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+}
+
+function updateCartQty(index, qty) {
+  const cart = getCart();
+  if (!cart[index]) return;
+  cart[index].qty = Math.max(1, qty);
+  saveCart(cart);
+}
+
+function cartCount() {
+  return getCart().reduce((sum, i) => sum + i.qty, 0);
+}
+
+function cartSubtotal() {
+  return getCart().reduce((sum, i) => {
+    const p = findProduct(i.id);
+    return p ? sum + p.price * i.qty : sum;
+  }, 0);
+}
+
+function updateCartCount() {
+  const el = document.getElementById("cartCount");
+  if (el) el.textContent = cartCount();
+}
+
+/* ---------- toast ---------- */
+function showToast(msg) {
+  let el = document.getElementById("toast");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "toast";
+    el.className = "toast";
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
+}
+
+/* ---------- product card markup ---------- */
+function productCardHTML(p) {
+  const priceHTML = p.compareAt
+    ? `<span class="price-compare">${money(p.compareAt)}</span><span class="price-now">${money(p.price)}</span>`
+    : money(p.price);
+  const tagHTML = p.tag ? `<span class="product-tag">${p.tag[getLang()]}</span>` : "";
+  return `
+    <a class="product-card" href="product.html?id=${p.id}">
+      <div class="product-media">
+        ${tagHTML}
+        <img src="${p.image}" alt="${pName(p)}" loading="lazy">
+      </div>
+      <h3 class="product-name">${pName(p)}</h3>
+      <div class="product-price">${priceHTML}</div>
+    </a>
+  `;
+}
+
+/* ---------- header wiring (nav toggle, lang, cart count) ---------- */
+function wireHeader() {
+  const langBtn = document.getElementById("langBtn");
+  if (langBtn) {
+    langBtn.addEventListener("click", () => setLang(getLang() === "ar" ? "en" : "ar"));
+  }
+  const navToggle = document.getElementById("navToggle");
+  const mainNav = document.getElementById("mainNav");
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", () => mainNav.classList.toggle("open"));
+  }
+  updateCartCount();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  wireHeader();
+  applyLang();
+});
+
+</script>
+<script>
+  function renderFeatured() {
+    const grid = document.getElementById("featuredGrid");
+    if (!grid) return;
+    const featured = PRODUCTS.slice(0, 4);
+    grid.innerHTML = featured.map(productCardHTML).join("");
+  }
+  function onLangChange() { renderFeatured(); }
+  renderFeatured();
+</script>
+</body>
+</html>
