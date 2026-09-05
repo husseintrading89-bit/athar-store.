@@ -1026,7 +1026,7 @@ function t(key) {
 function pName(p) { return p.name[getLang()]; }
 function pDesc(p) { return p.desc[getLang()]; }
 
-function applyLang() {
+function applyLang(triggerOnLangChange = true) {
   const lang = getLang();
   const dict = I18N[lang];
   document.documentElement.lang = lang === "ar" ? "ar" : "en";
@@ -1045,7 +1045,7 @@ function applyLang() {
   if (langBtn) langBtn.textContent = dict.lang_switch;
 
   // Re-render any dynamic page content that depends on language
-  if (typeof onLangChange === "function") onLangChange();
+  if (triggerOnLangChange && typeof onLangChange === "function") onLangChange();
 }
 
 /* ---------- money ---------- */

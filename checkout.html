@@ -1016,7 +1016,7 @@ function t(key) {
 function pName(p) { return p.name[getLang()]; }
 function pDesc(p) { return p.desc[getLang()]; }
 
-function applyLang() {
+function applyLang(triggerOnLangChange = true) {
   const lang = getLang();
   const dict = I18N[lang];
   document.documentElement.lang = lang === "ar" ? "ar" : "en";
@@ -1035,7 +1035,7 @@ function applyLang() {
   if (langBtn) langBtn.textContent = dict.lang_switch;
 
   // Re-render any dynamic page content that depends on language
-  if (typeof onLangChange === "function") onLangChange();
+  if (triggerOnLangChange && typeof onLangChange === "function") onLangChange();
 }
 
 /* ---------- money ---------- */
@@ -1171,7 +1171,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="shop.html" class="btn" data-i18n="cart_empty_cta">ابدأ التسوق</a>
         </div>
       `;
-      applyLang();
+      applyLang(false);
       return;
     }
 
@@ -1243,7 +1243,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     `;
-    applyLang();
+    applyLang(false);
 
     document.getElementById("checkoutForm").addEventListener("submit", (e) => {
       e.preventDefault();
