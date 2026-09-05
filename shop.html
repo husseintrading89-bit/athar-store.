@@ -21,6 +21,10 @@
   --clay: #B6694A;
   --olive: #6B7A4C;
   --white: #FFFDF9;
+  --stone: #C9A876;
+  --stone-dark: #8a6a3f;
+  --brick: #9c4222;
+  --mortar: #d9c9a6;
 
   --font: 'Tajawal', 'Inter', system-ui, sans-serif;
   --radius: 2px;
@@ -34,7 +38,15 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--mortar);
+  background-image:
+    linear-gradient(335deg, var(--brick) 23px, transparent 23px),
+    linear-gradient(155deg, var(--brick) 23px, transparent 23px),
+    linear-gradient(335deg, var(--brick) 23px, transparent 23px),
+    linear-gradient(155deg, var(--brick) 23px, transparent 23px);
+  background-size: 58px 58px;
+  background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font);
   font-size: 16px;
@@ -177,7 +189,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: stretch;
-  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  width: calc(100% - 24px);
+  max-width: var(--maxw);
+  margin: 18px auto 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(20,10,5,.5), inset 0 0 0 1px rgba(255,255,255,.5);
 }
 .hero-copy {
   padding: 80px 48px 80px 24px;
@@ -251,7 +269,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* ============================================
    Section headings
    ============================================ */
-.section { padding: 72px 0; }
+.section {
+  padding: 40px 24px;
+  margin: 18px auto;
+  background: var(--bg);
+  border-radius: 6px;
+  box-shadow: 0 16px 36px rgba(20,10,5,.5), inset 0 0 0 1px rgba(255,255,255,.5);
+}
 .section-head {
   display: flex;
   align-items: baseline;
@@ -280,6 +304,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   aspect-ratio: 4/3;
   overflow: hidden;
   background: var(--indigo-soft);
+  border: 6px solid var(--stone);
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.15), 0 8px 18px rgba(20,10,5,.3);
 }
 .cat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .cat-card:hover img { transform: scale(1.04); }
@@ -309,17 +336,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .product-card { display: block; }
 .product-media {
   position: relative;
-  aspect-ratio: 4/5;
+  aspect-ratio: 3/4;
   overflow: hidden;
   background: var(--bg-raised);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  border-radius: 50% 50% 6px 6px / 22% 22% 4% 4%;
+  border: 7px solid var(--stone);
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.18), inset 0 4px 10px rgba(0,0,0,.25), 0 10px 20px rgba(20,10,5,.35);
 }
 .product-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .product-card:hover .product-media img { transform: scale(1.03); }
 
 .product-tag {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   inset-inline-start: 10px;
   background: var(--clay);
   color: var(--white);
@@ -362,7 +392,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 @media (max-width: 860px) { .product-detail { grid-template-columns: 1fr; gap: 28px; } }
 
-.pd-media { background: var(--bg-raised); aspect-ratio: 4/5; overflow: hidden; }
+.pd-media {
+  background: var(--bg-raised);
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 50% 50% 6px 6px / 16% 16% 3% 3%;
+  border: 12px solid var(--stone);
+  box-shadow: inset 0 0 0 3px rgba(0,0,0,.18), inset 0 6px 14px rgba(0,0,0,.25), 0 14px 28px rgba(20,10,5,.4);
+}
 .pd-media img { width: 100%; height: 100%; object-fit: cover; }
 
 .pd-info .breadcrumb {
@@ -500,9 +537,13 @@ textarea { resize: vertical; min-height: 80px; }
    Footer
    ============================================ */
 .site-footer {
-  border-top: 1px solid var(--line);
-  padding: 48px 0 32px;
-  margin-top: 40px;
+  background: var(--bg);
+  width: calc(100% - 24px);
+  max-width: var(--maxw);
+  margin: 18px auto 24px;
+  border-radius: 6px;
+  box-shadow: 0 16px 36px rgba(20,10,5,.5), inset 0 0 0 1px rgba(255,255,255,.5);
+  padding: 48px 24px 32px;
 }
 .footer-grid {
   display: grid;
@@ -583,30 +624,26 @@ const PRODUCTS = [
     "id": "p01",
     "category": "clothing",
     "name": {
-      "ar": "قميص كتان فضفاض",
-      "en": "Loose Linen Shirt"
+      "ar": "Mon cherry 🍒",
+      "en": "Mon cherry 🍒"
     },
     "desc": {
-      "ar": "قميص كتان مصري خفيف، قصة مريحة تناسب الجو الحار.",
-      "en": "Lightweight Egyptian linen shirt with a relaxed cut, built for warm weather."
+      "ar": "منتج تجريبي لاختبار عملية الطلب على الموقع.",
+      "en": "A test product used to try out the ordering flow on the site."
     },
-    "price": 850,
+    "price": 500,
     "compareAt": null,
     "colors": [
-      "#E9E1D3",
-      "#3A3A38",
-      "#7C6A54"
+      "#B6694A",
+      "#2B2420"
     ],
     "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL"
+      "مقاس واحد"
     ],
-    "image": "https://picsum.photos/seed/athar-shirt/800/1000",
+    "image": "mon-cherry.jpg",
     "tag": {
-      "ar": "جديد",
-      "en": "New"
+      "ar": "تجربة",
+      "en": "Test"
     }
   },
   {
