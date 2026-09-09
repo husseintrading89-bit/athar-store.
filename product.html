@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تفاصيل المنتج | أثر</title>
+<title>تفاصيل المنتج | SAMARA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Amiri:wght@700&family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
@@ -77,15 +77,29 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   gap: 16px;
 }
 
+.logo-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 1;
+}
 .logo {
   font-family: var(--font-display);
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
   white-space: nowrap;
-  color: var(--ink);
+  color: #000000;
 }
-.logo .dot { color: var(--accent); }
+.logo-slogan {
+  font-family: var(--font-nav);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
 
 .main-nav {
   display: flex;
@@ -350,6 +364,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   padding: 5px 10px;
   border-radius: var(--radius);
 }
+.stock-badge {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 12px;
+  font-family: var(--font-nav);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  color: var(--white);
+  z-index: 2;
+}
+.stock-badge.low { background: #C1743A; }
+.stock-badge.out { background: #8a3a3a; }
+.product-card.out-of-stock .product-media { opacity: 0.55; }
+.product-card.out-of-stock .product-name,
+.product-card.out-of-stock .product-price { opacity: 0.55; }
 .product-cat {
   font-family: var(--font-nav);
   font-size: 10.5px;
@@ -547,7 +579,8 @@ textarea { resize: vertical; min-height: 80px; }
   text-transform: uppercase;
   margin: 0 0 16px;
 }
-.footer-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
+.footer-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: #000000; letter-spacing: 0.06em; margin-bottom: 6px; }
+.footer-slogan { font-family: var(--font-nav); font-size: 9.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; }
 .footer-grid ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: var(--ink-soft); }
 .footer-bottom { font-size: 0.8rem; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 22px; letter-spacing: 0.03em; }
 
@@ -571,13 +604,129 @@ textarea { resize: vertical; min-height: 80px; }
 [dir="rtl"] .toast { transform: translateX(50%); }
 .toast.show { opacity: 1; }
 
+/* ============================================
+   Policy modal
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(42,40,39,.55);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--card);
+  max-width: 480px;
+  width: 100%;
+  padding: 36px 32px;
+  position: relative;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+  line-height: 1;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+.modal-body { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px; }
+.footer-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  text-align: inherit;
+}
+.footer-link-btn:hover { color: var(--accent); }
+
+/* ============================================
+   Contact / WhatsApp
+   ============================================ */
+.contact-block {
+  background: var(--sand);
+  border: 1px solid var(--line);
+  padding: 24px 28px;
+  margin-top: 20px;
+  text-align: center;
+}
+.contact-title {
+  font-family: var(--font-nav);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.contact-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-family: var(--font-nav);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.contact-number {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  direction: ltr;
+  display: inline-block;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  inset-inline-end: 20px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #25D366;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(37,211,102,.4);
+  z-index: 90;
+  font-size: 1.5rem;
+}
+
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap header-row">
-    <a href="index.html" class="logo">أثر<span class="dot">.</span></a>
+    <a href="index.html" class="logo-block">
+      <span class="logo">SAMARA</span>
+      <span class="logo-slogan">Elegance in Every Detail</span>
+    </a>
     <nav class="main-nav" id="mainNav">
       <a href="index.html" data-i18n="nav_home">الرئيسية</a>
       <a href="shop.html" data-i18n="nav_shop">التشكيلات</a>
@@ -600,7 +749,11 @@ textarea { resize: vertical; min-height: 80px; }
 
 <footer class="site-footer">
   <div class="wrap">
-    <div class="footer-bottom">© 2026 Athar — <span data-i18n="footer_rights">جميع الحقوق محفوظة</span></div>
+    <div style="display:flex;gap:24px;justify-content:center;margin-bottom:18px;flex-wrap:wrap;">
+      <button class="footer-link-btn" id="policyModalTrigger" data-i18n="footer_returns">الاستبدال والاسترجاع</button>
+      <a href="#" class="footer-link-btn js-contact-whatsapp" target="_blank" rel="noopener" data-i18n="footer_contact">تواصل معنا</a>
+    </div>
+    <div class="footer-bottom">© 2026 SAMARA — <span data-i18n="footer_rights">جميع الحقوق محفوظة</span></div>
   </div>
 </footer>
 
@@ -610,6 +763,7 @@ const PRODUCTS = [
     "id": "p01",
     "category": "jewelry",
     "gifting": true,
+    "stock": 24,
     "name": { "ar": "خاتم فضة زوجي كلاسيك", "en": "Classic Silver Band Rings" },
     "desc": { "ar": "خواتم فضة بتصميم بسيط ومصقول، مناسبة للاستخدام اليومي أو كهدية.", "en": "Polished silver bands with a minimal profile — everyday wear or a considered gift." },
     "price": 650,
@@ -623,6 +777,7 @@ const PRODUCTS = [
     "id": "p02",
     "category": "jewelry",
     "gifting": true,
+    "stock": 4,
     "name": { "ar": "خاتم فضة استيتمنت", "en": "Statement Silver Ring" },
     "desc": { "ar": "خاتم فضة بتفاصيل لامعة وتصميم مميز يلفت الانتباه بدون مبالغة.", "en": "A brighter, more sculptural silver ring — a quiet statement piece without being loud." },
     "price": 780,
@@ -636,6 +791,7 @@ const PRODUCTS = [
     "id": "p03",
     "category": "jewelry",
     "gifting": true,
+    "stock": 0,
     "name": { "ar": "سلسلة فضة", "en": "Silver Chain Necklace" },
     "desc": { "ar": "سلسلة فضة يونيسكس بتصميم بسيط، تتنسق مع أي إطلالة.", "en": "A unisex silver chain with a clean, minimal build that layers with anything." },
     "price": 920,
@@ -649,6 +805,7 @@ const PRODUCTS = [
     "id": "p04",
     "category": "leather",
     "gifting": true,
+    "stock": 9,
     "name": { "ar": "شنطة جلد طبيعي هيكلية", "en": "Structured Leather Satchel" },
     "desc": { "ar": "شنطة جلد طبيعي بقصة هيكلية، للشغل أو المشاوير الرسمية.", "en": "Full-grain leather satchel with a structured silhouette, built for work or dressier days." },
     "price": 3200,
@@ -662,6 +819,7 @@ const PRODUCTS = [
     "id": "p05",
     "category": "leather",
     "gifting": true,
+    "stock": 3,
     "name": { "ar": "شنطة جلد يومية", "en": "Everyday Leather Tote" },
     "desc": { "ar": "شنطة جلد طبيعي فسيحة بتصميم هادئ، تتسع لاحتياجات يومك بالكامل.", "en": "A roomy, quiet-toned leather tote built for the everyday carry." },
     "price": 2600,
@@ -675,6 +833,7 @@ const PRODUCTS = [
     "id": "p06",
     "category": "leather",
     "gifting": true,
+    "stock": 15,
     "name": { "ar": "ساعة يد بسير جلد", "en": "Leather-Strap Watch" },
     "desc": { "ar": "ساعة يونيسكس بسير جلد طبيعي وميناء بسيط، قطعة تدوم لسنين.", "en": "A unisex watch with a genuine leather strap and a clean dial — built to last for years." },
     "price": 4200,
@@ -688,6 +847,7 @@ const PRODUCTS = [
     "id": "p07",
     "category": "gift-boxes",
     "gifting": true,
+    "stock": 30,
     "name": { "ar": "علبة هدية أثر — كلاسيك", "en": "Athar Signature Gift Box — Classic" },
     "desc": { "ar": "علبة هدية منسّقة بتغليف ذهبي فاخر، تحتوي على قطعة مختارة من التشكيلة.", "en": "A curated gift box with elevated gold-ribbon packaging, featuring one selected piece from the collection." },
     "price": 950,
@@ -701,6 +861,7 @@ const PRODUCTS = [
     "id": "p08",
     "category": "gift-boxes",
     "gifting": true,
+    "stock": 12,
     "name": { "ar": "علبة هدية أثر — ديلوكس", "en": "Athar Signature Gift Box — Deluxe" },
     "desc": { "ar": "مجموعة هدايا أكبر بتغليف فاخر، مناسبة للمناسبات الخاصة.", "en": "A larger gifting set with premium packaging, suited for special occasions." },
     "price": 1450,
@@ -715,14 +876,21 @@ const PRODUCTS = [
 </script>
 <script>
 /* ============================================
-   ATHAR store — shared logic
+   SAMARA store — shared logic
    Language, cart, and rendering helpers used
    across every page.
    ============================================ */
 
-/* ---------- store settings ---------- */
+/* ============================================
+   STORE CONFIG — edit these to update the store
+   ============================================ */
+const STORE_NAME = "SAMARA";
+const STORE_SLOGAN = "Elegance in Every Detail";
 const STORE_WHATSAPP = "201091313819"; // store WhatsApp number, international format, no + or leading 0
+const STORE_WHATSAPP_DISPLAY = "+20 109 131 3819"; // shown to people, formatted
 const SHIPPING_FEE = 100; // flat shipping fee in EGP
+const RETURN_POLICY_DAYS = 14; // days allowed for exchange/return
+const LOW_STOCK_THRESHOLD = 5; // show "only X left" badge at or below this
 
 /* ---------- i18n ---------- */
 const I18N = {
@@ -753,6 +921,8 @@ const I18N = {
     filter_leather: "جلديات وساعات",
     filter_giftboxes: "علب هدايا",
     gifting_badge: "مثالي كهدية",
+    low_stock: "باقي {n} قطع فقط!",
+    out_of_stock: "نفدت الكمية",
     add_to_cart: "أضف إلى الحقيبة",
     added_to_cart: "اتضافت للحقيبة",
     select_size: "اختار المقاس",
@@ -799,9 +969,15 @@ const I18N = {
     footer_shipping: "الشحن والتوصيل",
     footer_returns: "الاستبدال والاسترجاع",
     footer_contact: "تواصل معنا",
-    footer_about: "أثر متجر مجوهرات وإكسسوارات فاخرة، لمجموعتك الشخصية أو كهدية مميزة له ولها.",
+    footer_about: "سمارة بيت مجوهرات وإكسسوارات فاخرة، لمجموعتك الشخصية أو كهدية مميزة له ولها.",
     footer_rights: "جميع الحقوق محفوظة",
     required_field: "الحقل ده مطلوب",
+    policy_modal_title: "سياسة الاستبدال والاسترجاع",
+    policy_modal_body: "تقدر تستبدل أو تسترجع أي قطعة خلال {days} يوم من تاريخ الاستلام، بشرط إنها تكون في حالتها الأصلية وبتغليفها الأصلي من غير استخدام. للاستبدال أو الاسترجاع، تواصل معانا على واتساب برقم الطلب.",
+    policy_modal_close: "إغلاق",
+    contact_us_title: "خدمة العملاء",
+    contact_whatsapp_cta: "تواصل معنا على واتساب",
+    contact_number_label: "أو اتصل بينا على",
   },
   en: {
     dir: "ltr",
@@ -830,6 +1006,8 @@ const I18N = {
     filter_leather: "Leather & Watches",
     filter_giftboxes: "Gift Boxes",
     gifting_badge: "Ideal for Gifting",
+    low_stock: "Only {n} left!",
+    out_of_stock: "Out of Stock",
     add_to_cart: "Add to bag",
     added_to_cart: "Added to bag",
     select_size: "Select a size",
@@ -876,9 +1054,15 @@ const I18N = {
     footer_shipping: "Shipping & delivery",
     footer_returns: "Exchanges & returns",
     footer_contact: "Contact us",
-    footer_about: "Athar is a luxury jewelry and accessories house for your own collection or an elevated gift for Him & Her.",
+    footer_about: "SAMARA is a luxury jewelry and accessories house for your own collection or an elevated gift for Him & Her.",
     footer_rights: "All rights reserved",
     required_field: "This field is required",
+    policy_modal_title: "Exchange & Return Policy",
+    policy_modal_body: "You can exchange or return any piece within {days} days of delivery, provided it's in its original condition and packaging, unused. To request an exchange or return, message us on WhatsApp with your order number.",
+    policy_modal_close: "Close",
+    contact_us_title: "Customer Care",
+    contact_whatsapp_cta: "Chat with us on WhatsApp",
+    contact_number_label: "Or call us at",
   },
 };
 
@@ -889,6 +1073,7 @@ function getLang() {
 function setLang(lang) {
   localStorage.setItem("athar_lang", lang);
   applyLang();
+  wireContactButtons();
 }
 
 function t(key) {
@@ -1015,6 +1200,13 @@ const CATEGORY_LABELS = {
   "gift-boxes": { ar: "علب هدايا", en: "Gift Boxes" },
 };
 
+function stockBadgeHTML(p) {
+  if (typeof p.stock !== "number") return "";
+  if (p.stock === 0) return `<span class="stock-badge out">${t("out_of_stock")}</span>`;
+  if (p.stock <= LOW_STOCK_THRESHOLD) return `<span class="stock-badge low">${t("low_stock").replace("{n}", p.stock)}</span>`;
+  return "";
+}
+
 function productCardHTML(p) {
   const priceHTML = p.compareAt
     ? `<span class="price-compare">${money(p.compareAt)}</span><span class="price-now">${money(p.price)}</span>`
@@ -1022,10 +1214,12 @@ function productCardHTML(p) {
   const tagHTML = p.tag ? `<span class="product-tag">${p.tag[getLang()]}</span>` : "";
   const catLabel = CATEGORY_LABELS[p.category] ? CATEGORY_LABELS[p.category][getLang()] : "";
   const giftBadge = p.gifting ? `<div class="gift-badge">${t("gifting_badge")}</div>` : "";
+  const outClass = p.stock === 0 ? " out-of-stock" : "";
   return `
-    <a class="product-card" href="product.html?id=${p.id}">
+    <a class="product-card${outClass}" href="product.html?id=${p.id}">
       <div class="product-media">
         ${tagHTML}
+        ${stockBadgeHTML(p)}
         <img src="${p.image}" alt="${pName(p)}" loading="lazy">
       </div>
       <div class="product-cat">${catLabel}</div>
@@ -1050,8 +1244,53 @@ function wireHeader() {
   updateCartCount();
 }
 
+/* ---------- policy modal ---------- */
+function fillPolicyModal() {
+  const titleEl = document.getElementById("policyModalTitle");
+  const bodyEl = document.getElementById("policyModalBody");
+  if (titleEl) titleEl.textContent = t("policy_modal_title");
+  if (bodyEl) bodyEl.textContent = t("policy_modal_body").replace("{days}", RETURN_POLICY_DAYS);
+}
+
+function openPolicyModal() {
+  fillPolicyModal();
+  const overlay = document.getElementById("policyModal");
+  if (overlay) overlay.classList.add("open");
+}
+
+function closePolicyModal() {
+  const overlay = document.getElementById("policyModal");
+  if (overlay) overlay.classList.remove("open");
+}
+
+function wirePolicyModal() {
+  const trigger = document.getElementById("policyModalTrigger");
+  const closeBtn = document.getElementById("policyModalClose");
+  const overlay = document.getElementById("policyModal");
+  if (trigger) trigger.addEventListener("click", openPolicyModal);
+  if (closeBtn) closeBtn.addEventListener("click", closePolicyModal);
+  if (overlay) overlay.addEventListener("click", (e) => { if (e.target === overlay) closePolicyModal(); });
+  fillPolicyModal();
+}
+
+/* ---------- general contact WhatsApp (not order-specific) ---------- */
+function contactWhatsAppUrl() {
+  const msg = getLang() === "ar" ? "أهلاً، عندي استفسار عن سمارة" : "Hi, I have a question about SAMARA";
+  return `https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+}
+
+function wireContactButtons() {
+  document.querySelectorAll(".js-contact-whatsapp").forEach((el) => {
+    el.setAttribute("href", contactWhatsAppUrl());
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   wireHeader();
+  wirePolicyModal();
+  wireContactButtons();
   applyLang();
 });
 
@@ -1071,9 +1310,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderDetail() {
     const root = document.getElementById("productDetailRoot");
+    const isOut = product.stock === 0;
+    const addBtnAttrs = isOut ? "disabled" : "";
+    const addBtnText = isOut ? t("out_of_stock") : t("add_to_cart");
     root.innerHTML = `
       <div class="product-detail">
-        <div class="pd-media">
+        <div class="pd-media" style="position:relative;">
+          ${stockBadgeHTML(product)}
           <img src="${product.image}" alt="${pName(product)}">
         </div>
         <div class="pd-info">
@@ -1102,7 +1345,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 
           <div class="pd-actions">
-            <button class="btn" id="addBtn" data-i18n="add_to_cart">أضف إلى السلة</button>
+            <button class="btn" id="addBtn" ${addBtnAttrs}>${addBtnText}</button>
           </div>
 
           <div class="pd-meta">
@@ -1167,5 +1410,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function onLangChange() { renderDetail(); }
   renderDetail();
 </script>
+
+<div class="modal-overlay" id="policyModal">
+  <div class="modal-box">
+    <button class="modal-close" id="policyModalClose" aria-label="close">&times;</button>
+    <h3 class="modal-title" id="policyModalTitle">Policy</h3>
+    <p class="modal-body" id="policyModalBody"></p>
+  </div>
+</div>
+
+<a href="#" class="whatsapp-float js-contact-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.19 8.19 0 0 1-4.17-1.14l-.3-.18-3.11.82.83-3.03-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.53 3.69-8.22 8.23-8.22 2.2 0 4.26.86 5.81 2.41a8.15 8.15 0 0 1 2.41 5.81c0 4.53-3.69 8.22-8.23 8.22zm4.51-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.47-.01-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+</a>
+
 </body>
 </html>
